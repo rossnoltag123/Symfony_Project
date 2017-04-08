@@ -75,4 +75,5 @@ class Bibliography
     {
         $this->dif = $dif;
     }
+
 }
