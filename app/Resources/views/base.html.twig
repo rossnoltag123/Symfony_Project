@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/styles.css') }}">{% endblock %}
+
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    <div class="flex-container">
+
+        <header>
+            <h1>Bibliography Reference System</h1>
+        </header>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Public</a></li>
+                <li><a href="#">Student</a></li>
+                <li><a href="#">Lecturer</a></li>
+            </ul>
+        </nav>
+
+        {#{% block body %}{% endblock %}#}
+        {#{% block javascripts %}{% endblock %}#}
+
+
+        <article class="article">
+            <h1>London</h1>
+            <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+            <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
+        </article>
+
+
+        <footer>Symfony Project</footer>
+
+
+         </div>
     </body>
 </html>

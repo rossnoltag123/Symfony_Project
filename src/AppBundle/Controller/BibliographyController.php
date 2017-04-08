@@ -28,8 +28,10 @@ class BibliographyController extends Controller
         $entityManager->persist($bib);//tell to save
         $entityManager->flush();// commit to the addition
 
+
         return new Response('<html><body>Added Ross to database</body></html>');
     }
+
 
 
     /**
@@ -39,7 +41,7 @@ class BibliographyController extends Controller
     {
         $notes = [
           'New entry: Latest technology in 3d accelerated hardware',
-            'Old entry: A study on the lastest in game graphics',
+            'Old entry: A study on the latest in game graphics',
             'Admin entry: Update database'
         ];
 

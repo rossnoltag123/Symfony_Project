@@ -1,15 +1,11 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
-
 <h1>my new site {{ name }}</h1>
-
 <ul>
 {% for note in notes %}
     <li>{{ note }}</li>
 {% endfor %}
 </ul>
-
 {% endblock %}
