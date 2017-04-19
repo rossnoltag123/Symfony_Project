@@ -23,7 +23,9 @@ a,footer,li a,h1, h2, h3, h4, p {
     color: #AACCFF;
     font-family: Helvetica Neue,Helvetica,sans-serif;
 }
-
+a{
+    color:grey;
+}
 body {
     background-color: #222233;
     margin: 0 0 20px;
@@ -52,9 +54,7 @@ li a:hover {
     background-color:	#778899;
 }
 
-
 @media all and (min-width: 768px) {
-
 
     footer {
 
@@ -64,3 +64,54 @@ li a:hover {
         width: 100%;
             }
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #dddddd;
+    color: black;
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+.flash-error{
+    font-family: Helvetica Neue,Helvetica,sans-serif;
+    font-size: 30px;
+    padding: 1rem;
+    margin:1rem;
+    background-color: pink;
+}
+
+.flash-notice{
+    font-family: Helvetica Neue,Helvetica,sans-serif;
+    font-size: 30px;
+    padding: 1rem;
+    margin:1rem;
+    background-color: white;
+}
+
+label {
+    font-family: Helvetica Neue,Helvetica,sans-serif;
+
+    width:20rem;
+    padding-right: 0.5rem;
+    font-weight:bold;
+    color:#AACCFF;
+
+}
+
+
+.form-field{
+    padding-bottom: 1rem;
+}
+
+idTag{
+    color:blue;
+}
+
+

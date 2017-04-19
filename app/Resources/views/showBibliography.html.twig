@@ -1,0 +1,69 @@
+{% extends '_base.html.twig' %}
+
+{#-------------------------------------------#}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{#-------------------------------------------#}
+
+{% block body %}
+
+    <a href="{{ path('newRef_Form') }}">Add reference</a>
+
+    <h1>This is the database view page</h1>
+
+        <article class="article">
+
+             <a href="{{ path('newRef_Form') }}"></a>
+
+
+        <ul>
+            <li>
+            {#<a href="{{ path('showReference',{id: bib.id}) }}">{{ bib.name }}</a>#}
+            </li>
+        </ul>
+
+<hr>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Reference</th>
+                    <th>Tag</th>
+                    <th>Textsummary</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for  bib in bibliography %}
+                    <tr>
+                        <td><a href="{{ path('showReference', { 'id': bib.id }) }}">{{ bib.name }}</a></td>
+                        <td>{{ bib.name }}</td>
+                        <td>{{ bib.reference }}</td>
+                        <td>{{ bib.tag }}</td>
+                        <td>{{ bib.textSummary }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('showReference', { 'id': bib.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('studentref2_edit', { 'id': bib.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </article>
+{% endblock %}
+
+{#-------------------------------------------#}

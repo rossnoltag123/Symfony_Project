@@ -1,0 +1,45 @@
+{% extends '_base.html.twig' %}
+
+{#-------------------------------------------#}
+
+{% block title %}
+    Show Reference
+{% endblock %}
+
+{#-------------------------------------------#}
+
+{% block body %}
+
+    <h1>Show one reference</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ bibliography.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ bibliography.name }}</td>
+        </tr>
+        <tr>
+            <th>Reference</th>
+            <td>{{ bibliography.reference }}</td>
+        </tr>
+        <tr>
+            <th>Tag</th>
+            <td>{{ bibliography.tag }}</td>
+        </tr>
+        <tr>
+            <th>Textsummary</th>
+            <td>{{ bibliography.textSummary }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('showBibliography') }}">References</a>
+{% endblock %}
+
+{#-------------------------------------------#}

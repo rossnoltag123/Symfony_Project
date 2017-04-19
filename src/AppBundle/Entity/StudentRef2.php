@@ -5,21 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * StudentRef2
  *
- * @ORM\Entity
- * @ORM\Table(name="bibliography")
+ * @ORM\Table(name="student_ref2")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StudentRef2Repository")
  */
-class Bibliography
+class StudentRef2
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -45,29 +50,37 @@ class Bibliography
     private $textSummary;
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-
-
     /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return StudentRef2
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -142,3 +155,4 @@ class Bibliography
         return $this->textSummary;
     }
 }
+
