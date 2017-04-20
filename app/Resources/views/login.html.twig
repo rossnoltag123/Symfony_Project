@@ -1,28 +1,22 @@
 {% extends '_base.html.twig' %}
 
-{#-------------------------------------------#}
-
-{% block title %}
-    Login Page
-{% endblock %}
-
-{#--------------------------------------------#}
-
 {% block body %}
-<article class="article">
-    <h1>This is the login page</h1>
-    {#//Retrieve name from login#}
-        <p>Hello{{ name }}</p>
-    <br>
-        <form method="post" action="login.html.twig">
-            <input type="text" name="name">
-            <input type="password" password="name">
-        </form>
-    <br>
 
-    <br>
-    {#<a href="{{ path('databaseInfo', {'wildcard':name}) }}">Jason Notes</a>#}
-</article>
+    <h1>Login</h1>
+
+    {% if app.session.flashBag.has('error') %}
+        <div class="flash-error">
+            {% for msg in app.session.flashBag.get('error') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Login" />
+    {{ form_end(form) }}
+
+
 {% endblock %}
-
-{#--------------------------------------------#}

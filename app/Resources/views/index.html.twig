@@ -10,6 +10,48 @@
 
 {% block body %}
 
+    {#<p>#}
+        {#using default colours = {{ default_colours }}#}
+    {#</p>#}
+
+    {#<ul>#}
+        {#{% for property, colour in colours %}#}
+            {#<li>#}
+                {#{{ property }} = {{ colour }}#}
+            {#</li>#}
+        {#{% endfor %}#}
+    {#</ul>#}
+
+    {#{% set default_colors = 'no' %}#}
+    {#{% set colours = app.session.get('colours') %}#}
+
+    {#{% if colours is null %}#}
+        {#{% set default_colors = 'yes' %}#}
+        {#{% set colours ={#}
+            {#'foreground': 'black',#}
+            {#'background': 'white'#}
+        {#}#}
+     {#%}#}
+    {#{% endif %}#}
+
+
+    {#<p>#}
+    {#using default colours = {{ default_colours }}#}
+    {#</p>#}
+
+    {#<ul>#}
+    {#{% for property, colour in colours %}#}
+    {#<li>#}
+    {#{{ property }} = {{ colour }}#}
+    {#</li>#}
+    {#{% endfor %}#}
+    {#</ul>#}
+
+
+
+
+
+
        <article class="article">
            <h1>Welcome</h1>
            <p>Contrast is the difference in luminance or color that makes an object (or its representation in an image or display) distinguishable.

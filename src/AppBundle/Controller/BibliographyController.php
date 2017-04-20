@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -27,19 +28,42 @@ class BibliographyController extends Controller
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-----------------------------------------------HomePage---------------------------------------------------------*/
 
+
     /**
      * @Route("/Bibliography/" , name="homepage")
      */
     public function indexAction(Request $request)
     {
+//        $colours = [
+//            'foreground' => 'blue',
+//            'background' => 'pink'
+//        ];
+//        $session = new Session();
+//        $session->set('colours', $colours);
+
         $nameIndexArray = [
             'name' => 'Ross'
         ];
 
         $templateName = 'index';
-
         return $this->render($templateName . '.html.twig', $nameIndexArray);
     }
+
+//    /**
+//     * @Route("/Bibliography/student/homepage" , name="studentHomepage")
+//     */
+//    public function studentindexAction(Request $request)
+//    {
+//        $session = new Session();
+//
+//        $nameIndexArray = [
+//            'name' => 'Ross'
+//        ];
+//
+//        $templateName = 'index';
+//
+//        return $this->render($templateName . '.html.twig', $nameIndexArray);
+//    }
 
     /*----------------------------------------------------------------------------------------------------------------*/
     /*--------------------------------------------------Login---------------------------------------------------------*/
