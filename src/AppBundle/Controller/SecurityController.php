@@ -20,13 +20,14 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
         $session = new Session();
-
         $user = new User();
+
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if($this->canAuthenticate($user)) {
+
                 $session->set('user', $user);
             }else{
                     $this->addFlash(
@@ -46,6 +47,19 @@ class SecurityController extends Controller
 
         $templateName = 'login';
         return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     *
+     */
+    public function canAuthenticate(User $user)
+    {
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+
+        return ('admin' == $username) && ('admin' == $password);
     }
 
 }

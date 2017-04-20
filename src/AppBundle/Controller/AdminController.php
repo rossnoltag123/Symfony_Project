@@ -28,9 +28,19 @@ class AdminController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $templateName = 'admin_index';
-        return $this->render($templateName . '.html.twig', []);
+        $session = new Session();
+
+        if($session->has ('user')){
+            $templateName = '/admin/index';
+            return $this->render($templateName.'.html.twig',[]);
+        }
+
+        $session->getFlashBag()->clear();
+        $this->addFlash(
+            'error',
+            'please login before accessing admin'
+        );
+
+        return $this->redirectToRoute('login');
     }
-
-
 }
