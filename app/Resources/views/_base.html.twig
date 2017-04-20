@@ -6,11 +6,27 @@
 
     {% block stylesheets %}<link rel="stylesheet" href="{{ asset('/css/styles.css') }}">{% endblock %}
     {#(asset)on static files, symfony prefixes every static URL with your CDN host, faster loading times#}
-
     {#param-converted#}
-
     </head>
     <body>
+
+    {% set user = app.session.get('user') %}
+
+    {% if user is null %}
+
+    <p>Login: <a href="{{ path('login') }}">login</a></p>
+
+    {% else %}
+
+    <header>
+        You are logged in: {{ user.username }}
+        <br>
+        <a href="{{ path('logout') }}">logout</a>
+    </header>
+
+    {% endif %}
+
+
         <div class="flex-container">
          <header>
             <h1>Bibliography Reference System</h1>

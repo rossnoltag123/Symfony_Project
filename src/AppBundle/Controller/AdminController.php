@@ -15,6 +15,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 /**
  * Class AdminController
@@ -25,6 +27,7 @@ class AdminController extends Controller
 {
     /**
      * @Route("/", name="admin_index")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request)
     {

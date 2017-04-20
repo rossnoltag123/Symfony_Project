@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+
+
 class SecurityController extends Controller
 {
     /**
@@ -52,7 +54,6 @@ class SecurityController extends Controller
     /**
      * @param User $user
      * @return bool
-     *
      */
     public function canAuthenticate(User $user)
     {
@@ -61,5 +62,4 @@ class SecurityController extends Controller
 
         return ('admin' == $username) && ('admin' == $password);
     }
-
 }

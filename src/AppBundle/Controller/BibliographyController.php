@@ -11,10 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
@@ -64,6 +61,29 @@ class BibliographyController extends Controller
 //
 //        return $this->render($templateName . '.html.twig', $nameIndexArray);
 //    }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------Logout--------------------------------------------------------*/
+    /**
+     * logout form
+     *
+     * @Route("/Bibliography/logout", name="logout")
+     * @Method({"GET", "POST"})
+     */
+    public function logoutAction(Request $request)
+    {
+        $session = new Session();
+        $session->remove('name');
+        $session->clear();
+
+        $argsArray=[
+        ];
+
+        $templateName = 'index';
+        return $this->render($templateName . '.html.twig', $argsArray);
+
+
+    }
 
     /*----------------------------------------------------------------------------------------------------------------*/
     /*--------------------------------------------------Login---------------------------------------------------------*/
