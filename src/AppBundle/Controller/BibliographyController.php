@@ -25,19 +25,11 @@ class BibliographyController extends Controller
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-----------------------------------------------HomePage---------------------------------------------------------*/
 
-
     /**
      * @Route("/Bibliography/" , name="homepage")
      */
     public function indexAction(Request $request)
     {
-//        $colours = [
-//            'foreground' => 'blue',
-//            'background' => 'pink'
-//        ];
-//        $session = new Session();
-//        $session->set('colours', $colours);
-
         $nameIndexArray = [
             'name' => 'Ross'
         ];
@@ -46,24 +38,9 @@ class BibliographyController extends Controller
         return $this->render($templateName . '.html.twig', $nameIndexArray);
     }
 
-//    /**
-//     * @Route("/Bibliography/student/homepage" , name="studentHomepage")
-//     */
-//    public function studentindexAction(Request $request)
-//    {
-//        $session = new Session();
-//
-//        $nameIndexArray = [
-//            'name' => 'Ross'
-//        ];
-//
-//        $templateName = 'index';
-//
-//        return $this->render($templateName . '.html.twig', $nameIndexArray);
-//    }
-
     /*----------------------------------------------------------------------------------------------------------------*/
     /*--------------------------------------------------Logout--------------------------------------------------------*/
+
     /**
      * logout form
      *
@@ -81,8 +58,6 @@ class BibliographyController extends Controller
 
         $templateName = 'index';
         return $this->render($templateName . '.html.twig', $argsArray);
-
-
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
@@ -96,7 +71,7 @@ class BibliographyController extends Controller
         $nameIndexArray = [
             'name' => 'Login'
         ];
-        $templateName = 'login';
+        $templateName = 'loginSymf';
         return $this->render($templateName . '.html.twig', $nameIndexArray);
     }
 
@@ -108,15 +83,6 @@ class BibliographyController extends Controller
      */
     public function newFormAction(Request $request)
     {
-
-//        $form = $this->createFormBuilder($bibliography)
-//        ->add('name',TextType::class)
-//        ->add('reference',TextType::class)
-//        ->add('tag',TextType::class)
-//        ->add('textSummary',TextType::class)
-//        ->add('save',SubmitType::class, array('label'=> 'Create Reference'))
-//        ->getForm();
-
 
         $bibliography = new Bibliography();
         $form = $this->createForm('AppBundle\Form\BibliographyType',$bibliography);
@@ -147,8 +113,6 @@ class BibliographyController extends Controller
      */
     public function processNewFromAction(Request $request)
     {
-
-
         $name = $request->request->get('name');
 
         if (empty($name))
@@ -159,16 +123,8 @@ class BibliographyController extends Controller
             );
             return $this->newFormAction($request);
         }
-
             return $this->createAction($name);
     }
-
-
-
-
-
-
-
 
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-------------------------Database ADD--------------------------*/
@@ -187,22 +143,6 @@ class BibliographyController extends Controller
 
         return $this->redirectToRoute('showBibliography');
     }
-
-    /*----------------------------------------------------------------------------------------------------------------*/
-
-//        if ($name != null) {
-//            $this->addFlash(
-//                'notice',
-//                'Your update went through '
-//            );
-//            $templateName = 'createNewReference';
-
-            //return $this->render($templateName . '.html.twig', $argsArray);
-            //return new Response('Created new Bibliography name entry' . $bib1->getId());
-
-
-    /*----------------------------------------------------------------------------------------------------------------*/
-
 
     /*----------------------------------------------------------------------------------------------------------------*/
     /*---------------------Database DELETE--------------------------*/

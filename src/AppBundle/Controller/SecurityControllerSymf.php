@@ -12,10 +12,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+///**
+// * Class SecurityControllerSymf
+// * @package AppBundle\Controller
+// * @Route("/symfonySecurity")
+// */
 class SecurityControllerSymf extends Controller
 {
     /**
-     * @Route("/loginSymf" name="loginSymf")
+     * @Route("/loginSymf" , name="loginSymf")
      */
     public function loginAction(Request $request)
     {
@@ -25,7 +30,7 @@ class SecurityControllerSymf extends Controller
 
         $lastUsername = $authenticateUtils->getLastUsername();
 
-        $templateName = 'security/login';
+        $templateName = 'loginSymf';
         $argsArray = [
             'last_username' => $lastUsername,
             'error'         => $error,

@@ -10,21 +10,23 @@
     </head>
     <body>
 
-    {% set user = app.session.get('user') %}
 
-    {% if user is null %}
 
-    <p>Login: <a href="{{ path('login') }}">login</a></p>
+    {#{% set user = app.session.get('user') %}#}
 
-    {% else %}
+    {#{% if user is null %}#}
 
-    <header>
-        You are logged in: {{ user.username }}
-        <br>
-        <a href="{{ path('logout') }}">logout</a>
-    </header>
+    {#<p>Login: <a href="{{ path('loginSymf') }}">login</a></p>#}
 
-    {% endif %}
+    {#{% else %}#}
+
+    {#<header>#}
+        {#You are logged in: {{ user.username }}#}
+        {#<br>#}
+        {#<a href="{{ path('logout') }}">logout</a>#}
+    {#</header>#}
+
+    {#{% endif %}#}
 
 
         <div class="flex-container">
@@ -33,7 +35,7 @@
          </header>
             <ul>
                 <li><a href="{{ path('homepage') }}">Home page</a></li>
-                <li><a href="{{ path('login') }}">Login</a></li>
+                <li><a href="{{ path('loginSym') }}">Login</a></li>
                 <li><a href="{{ path('showBibliography') }}">Repository</a></li>
             </ul>
 
