@@ -15,8 +15,7 @@
         <div> {{ error.messageKey | trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-        <form action="{{ path ('loginSym') }}" method="post">
-
+        <form action="{{ path ('loginSymf') }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token ('authenticate') }}">
             <p>
                 <label for="username">Username:</label>
@@ -24,11 +23,10 @@
             <p>
                 <label for="password">Password:</label>
                 <input type="password" id ="password" name="_password"/>
-
             <p>
                 <button type="submit">login</button>
-
         </form>
+
 {% endblock %}
 
 {#-------------------------------------------#}

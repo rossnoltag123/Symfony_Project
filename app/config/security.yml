@@ -1,19 +1,21 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
 
     providers:
         in_memory:
             memory:
                 users:
                    user:
-                       password: user
+                       password: $2y$12$dOT95zt8t6LKv8gMmvwZieV6zuREFw2KWxMx7oa/PTa.4AlJBndWm
                        roles: 'ROLE_USER'
                    admin:
-                       password: admin
+                       password: $2y$12$VjvNaDSarIAAidoa3MxxwuqBY6TMvr/F5s0D9e005uT0JOIKdNizy
                        roles: 'ROLE_ADMIN'
                    ross:
-                       password: nolan
+                       password: $2y$12$Xo/AyUnJQ7wPcu5f4Y4JtOFB2fcS52hJYE9R3nvMwP0rADZBvD8d2
                        roles: 'ROLE_ADMIN'
 
     firewalls:
@@ -23,8 +25,8 @@ security:
         default:
             anonymous: ~
             form_login:
-                login_path: loginSymf
-                check_path: loginSymf
+                login_path: /loginSymf
+                check_path: /loginSymf
             logout:
                 path:   /logout
                 target: /Bibliography
