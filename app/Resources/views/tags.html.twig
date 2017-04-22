@@ -1,0 +1,39 @@
+{% extends '_base.html.twig' %}
+
+{# ----------------------------------------- #}
+
+{% block title %}
+    Tags
+{% endblock %}
+
+{# ----------------------------------------- #}
+
+{% block body %}
+    <article class="article">
+    <table>
+        <thead>
+         <tr>
+             <th>ID</th>
+             <th>Tag</th>
+             <th>Actions</th>
+         </tr>
+        </thead>
+        <tbody>
+
+    {% for tags in bibliography %}
+        <tr>
+            <td>{{ tags.id }}</td>
+            <td>{{ tags.tag }}</td>
+            <td>
+                <ul>
+                    <li><a href="{{ path('showReference', { 'id': tags.id }) }}">show</a></li>
+                    <li><a href="{{ path('proposedTags', { 'id': tags.id}) }}">Add To Favorite</a></li>
+
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    </article>
+{% endblock %}

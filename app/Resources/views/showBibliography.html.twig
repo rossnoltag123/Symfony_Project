@@ -10,22 +10,25 @@
 
 {% block body %}
 
-    <a href="{{ path('newRef_Form') }}">Add reference</a>
-
     <h1>This is the database view page</h1>
+    <ul>
+        <li><a href="{{ path('newRef_Form') }}">Add reference</a></li>
+        <li><a href="{{ path('taglist') }}">View Tags</a></li>
+        <li><a href="{{ path('newRef_Form') }}">Lecturer's BIBs</a></li>
+    </ul>
+
+
+
 
         <article class="article">
-
-             <a href="{{ path('newRef_Form') }}"></a>
-
-
+            <a href="{{ path('newRef_Form') }}"></a>
         <ul>
             <li>
             {#<a href="{{ path('showReference',{id: bib.id}) }}">{{ bib.name }}</a>#}
             </li>
         </ul>
 
-<hr>
+
             <table>
                 <thead>
                 <tr>
@@ -41,7 +44,7 @@
 
                 {% for  bib in bibliography %}
                     <tr>
-                        <td><a href="{{ path('showReference', { 'id': bib.id }) }}">{{ bib.name }}</a></td>
+                        <td><a href="{{ path('showReference', { 'id': bib.id }) }}">{{ bib.id }}</a></td>
                         <td>{{ bib.name }}</td>
                         <td>{{ bib.reference }}</td>
                         <td>{{ bib.tag }}</td>
@@ -51,14 +54,11 @@
                                 <li>
                                     <a href="{{ path('showReference', { 'id': bib.id }) }}">show</a>
                                 </li>
-                                <li>
-                                    <a href="{{ path('studentref2_edit', { 'id': bib.id }) }}">edit</a>
-                                </li>
                             </ul>
                         </td>
                     </tr>
-
                 {% endfor %}
+
                 </tbody>
             </table>
 

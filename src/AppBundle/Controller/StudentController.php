@@ -1,42 +1,82 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Ross
+ * Date: 20-Apr-17
+ * Time: 1:44 AM
+ */
 
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\StudentRef2;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 /**
- * Studentref2 controller.
+ * @Route("/")
  *
- * @Route("studentref2")
  */
-class StudentRef2Controller extends Controller
+class StudentController extends Controller
 {
     /**
-     * Lists all studentRef2 entities.
-     *
-     * @Route("/", name="studentref2_index")
-     * @Method("GET")
+     * @Route("/student/", name="secure_index")
+     * @Security("has_role('ROLE_USER')")
      */
-    public function indexAction()
+    public function studentAction()
+    {
+
+//        $session = new Session();
+//
+//        if($session->has ('user')){
+//            $templateName = '/admin/index';
+//            return $this->render($templateName.'.html.twig',[]);
+//        }
+//
+//        $session->getFlashBag()->clear();
+//        $this->addFlash(
+//            'error',
+//            'please login before accessing admin'
+//        );
+//
+//        return $this->redirectToRoute('loginSymf');
+//    }
+
+        $templateName = '/student/index';
+        return $this->render($templateName . '.html.twig', []);
+    }
+
+    /*--------------------------------------------------------------------------------*/
+
+    /**
+     * @Route("/student/repository", name="studentref2_index")
+     * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function repositoryAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $studentRef2s = $em->getRepository('AppBundle:StudentRef2')->findAll();
 
-        return $this->render('studentref2/index.html.twig', array(
+        return $this->render('student/repository.html.twig', array(
             'studentRef2s' => $studentRef2s,
         ));
     }
 
+    /*--------------------------------------------------------------------------------*/
+
     /**
      * Creates a new studentRef2 entity.
-     *
-     * @Route("/new", name="studentref2_new")
+     * @Route("/student/new", name="studentref2_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {
@@ -52,33 +92,37 @@ class StudentRef2Controller extends Controller
             return $this->redirectToRoute('studentref2_show', array('id' => $studentRef2->getId()));
         }
 
-        return $this->render('studentref2/new.html.twig', array(
+        return $this->render('student/new.html.twig', array(
             'studentRef2' => $studentRef2,
             'form' => $form->createView(),
         ));
     }
 
+    /*--------------------------------------------------------------------------------*/
+
     /**
      * Finds and displays a studentRef2 entity.
-     *
-     * @Route("/{id}", name="studentref2_show")
+     * @Route("/student/{id}", name="studentref2_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showAction(StudentRef2 $studentRef2)
     {
         $deleteForm = $this->createDeleteForm($studentRef2);
 
-        return $this->render('studentref2/show.html.twig', array(
+        return $this->render('student/show.html.twig', array(
             'studentRef2' => $studentRef2,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
+    /*--------------------------------------------------------------------------------*/
+
     /**
      * Displays a form to edit an existing studentRef2 entity.
-     *
-     * @Route("/{id}/edit", name="studentref2_edit")
+     * @Route("/student/{id}/edit", name="studentref2_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, StudentRef2 $studentRef2)
     {
@@ -92,18 +136,20 @@ class StudentRef2Controller extends Controller
             return $this->redirectToRoute('studentref2_edit', array('id' => $studentRef2->getId()));
         }
 
-        return $this->render('studentref2/edit.html.twig', array(
+        return $this->render('student/edit.html.twig', array(
             'studentRef2' => $studentRef2,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
+    /*--------------------------------------------------------------------------------*/
+
     /**
      * Deletes a studentRef2 entity.
-     *
-     * @Route("/{id}", name="studentref2_delete")
+     * @Route("/student/{id}", name="studentref2_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, StudentRef2 $studentRef2)
     {
@@ -119,12 +165,13 @@ class StudentRef2Controller extends Controller
         return $this->redirectToRoute('studentref2_index');
     }
 
+    /*--------------------------------------------------------------------------------*/
+
     /**
      * Creates a form to delete a studentRef2 entity.
-     *
      * @param StudentRef2 $studentRef2 The studentRef2 entity
-     *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_USER')")
      */
     private function createDeleteForm(StudentRef2 $studentRef2)
     {
@@ -132,6 +179,7 @@ class StudentRef2Controller extends Controller
             ->setAction($this->generateUrl('studentref2_delete', array('id' => $studentRef2->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
+
 }

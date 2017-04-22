@@ -12,11 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-///**
-// * Class SecurityControllerSymf
-// * @package AppBundle\Controller
-// * @Route("/symfonySecurity")
-// */
+
 class SecurityControllerSymf extends Controller
 {
     /**

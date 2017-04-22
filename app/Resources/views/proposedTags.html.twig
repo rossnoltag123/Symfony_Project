@@ -1,0 +1,34 @@
+{% extends '_base.html.twig' %}
+
+{#-------------------------------------------#}
+
+{% block title %}
+    Show Proposed Tags
+{% endblock %}
+
+{#-------------------------------------------#}
+
+{% block body %}
+
+    <h1>Proposed Tags</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <th>Tag</th>
+        </tr>
+        <tr>
+            <td>{{ tagID.id }}</td>
+            <td>{{ tagID.tag }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <a href="{{ path('showBibliography') }}">References</a>
+{% endblock %}
+
+{#-------------------------------------------#}

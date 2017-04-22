@@ -16,7 +16,7 @@ security:
                        roles: 'ROLE_ADMIN'
                    ross:
                        password: $2y$12$Xo/AyUnJQ7wPcu5f4Y4JtOFB2fcS52hJYE9R3nvMwP0rADZBvD8d2
-                       roles: 'ROLE_ADMIN'
+                       roles: 'ROLE_USER'
 
     firewalls:
         dev:

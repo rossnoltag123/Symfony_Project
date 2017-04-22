@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-
     {% block stylesheets %}<link rel="stylesheet" href="{{ asset('/css/styles.css') }}">{% endblock %}
     {#(asset)on static files, symfony prefixes every static URL with your CDN host, faster loading times#}
     {#param-converted#}
     </head>
     <body>
-
-
+    {% block Logout %}{% endblock %}
 
     {#{% set user = app.session.get('user') %}#}
-
     {#{% if user is null %}#}
-
     {#<p>Login: <a href="{{ path('loginSymf') }}">login</a></p>#}
-
     {#{% else %}#}
-
     {#<header>#}
         {#You are logged in: {{ user.username }}#}
         {#<br>#}
         {#<a href="{{ path('logout') }}">logout</a>#}
     {#</header>#}
-
     {#{% endif %}#}
-
 
         <div class="flex-container">
          <header>
@@ -35,8 +27,8 @@
          </header>
             <ul>
                 <li><a href="{{ path('homepage') }}">Home page</a></li>
-                <li><a href="{{ path('loginSymf') }}">Login</a></li>
                 <li><a href="{{ path('showBibliography') }}">Repository</a></li>
+                <li><a href="{{ path('loginSymf') }}">Student Login</a></li>
             </ul>
 
         {#--------------------------------------------#}

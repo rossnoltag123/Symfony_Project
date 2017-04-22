@@ -53,7 +53,7 @@ class BibliographyController extends Controller
         $session->remove('name');
         $session->clear();
 
-        $argsArray=[
+        $argsArray = [
         ];
 
         $templateName = 'index';
@@ -85,21 +85,21 @@ class BibliographyController extends Controller
     {
 
         $bibliography = new Bibliography();
-        $form = $this->createForm('AppBundle\Form\BibliographyType',$bibliography);
+        $form = $this->createForm('AppBundle\Form\BibliographyType', $bibliography);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($bibliography);
             $entityManager->flush();
 
 //          $bibliography = $form->getData();
-            return $this->redirectToRoute('showBibliography', array('id'=> $bibliography->getId()));
-           // return $this->createAction($bibliography);
+            return $this->redirectToRoute('showBibliography', array('id' => $bibliography->getId()));
+            // return $this->createAction($bibliography);
         }
 
         $argsArray = [
-            'form'=> $form->createView(),
+            'form' => $form->createView(),
             'bibliography' => $bibliography,
         ];
 
@@ -115,15 +115,14 @@ class BibliographyController extends Controller
     {
         $name = $request->request->get('name');
 
-        if (empty($name))
-        {
+        if (empty($name)) {
             $this->addFlash(
                 'error',
                 'Reference cannot be empty'
             );
             return $this->newFormAction($request);
         }
-            return $this->createAction($name);
+        return $this->createAction($name);
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
@@ -195,7 +194,6 @@ class BibliographyController extends Controller
     /**
      * @Route("/Bibliography/show/{id}" , name="showReference")
      */
-
     public function showAction($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -237,10 +235,58 @@ class BibliographyController extends Controller
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
+    /*------------------------Tag Action-----------------------------*/
+
+    /**
+     * @Route("/Bibliography/taglist" , name= "taglist")
+     */
+    public function tagAction()
+    {
+        $bibliographyRepository = $this->getDoctrine()->getRepository('AppBundle:Bibliography');
+
+        $bibRepo = $bibliographyRepository->findAll();
+
+        $argsArray = [
+            'bibliography' => $bibRepo
+        ];
+
+        $templateName = 'tags';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+    /*-------------------------ProposedTag Add--------------------------*/
+
+    /**
+     * @Route("/Bibliography/proposedTags/{id}" , name="proposedTags")
+     */
+    public function proposedTagAction($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $tagID = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
+
+        if (!$tagID) {
+            throw $this->createNotFoundException(
+                'No Bibliography found for id' . $id
+            );
+        }
 
 
 
+        return $this->createAction($tagID);
 
+//        $argsArray = [
+//            'tagID' =>  $tagID
+//        ];
+//
+//        $templateName = 'proposedTags';
+//        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+}
 
 
 
@@ -459,4 +505,3 @@ class BibliographyController extends Controller
 //
 //        return new JsonResponse($data);
 //    }
-}
