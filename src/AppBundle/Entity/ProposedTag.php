@@ -5,21 +5,30 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProposedTag
  *
- * @ORM\Table(name="proposed_tag")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProposedTagRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="proposedTag")
  */
 class ProposedTag
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255)
+     */
+    private $reference;
 
     /**
      * @var string
@@ -28,15 +37,61 @@ class ProposedTag
      */
     private $tag;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text_summary", type="string", length=255)
+     */
+    private $textSummary;
 
     /**
-     * Get id
-     *
-     * @return int
+     * @return mixed
      */
     public function getId()
     {
         return $this->id;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return StudentRef2
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 
     /**
@@ -44,7 +99,7 @@ class ProposedTag
      *
      * @param string $tag
      *
-     * @return ProposedTag
+     * @return StudentRef2
      */
     public function setTag($tag)
     {
@@ -62,5 +117,28 @@ class ProposedTag
     {
         return $this->tag;
     }
-}
 
+    /**
+     * Set textSummary
+     *
+     * @param string $textSummary
+     *
+     * @return StudentRef2
+     */
+    public function setTextSummary($textSummary)
+    {
+        $this->textSummary = $textSummary;
+
+        return $this;
+    }
+
+    /**
+     * Get textSummary
+     *
+     * @return string
+     */
+    public function getTextSummary()
+    {
+        return $this->textSummary;
+    }
+}

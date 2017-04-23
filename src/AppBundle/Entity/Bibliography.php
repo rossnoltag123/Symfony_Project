@@ -44,6 +44,17 @@ class Bibliography
      */
     private $textSummary;
 
+
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="proposed", type="string", length=255)
+//     */
+//    private $proposed;
+
+
+
+
     /**
      * @return mixed
      */
@@ -53,6 +64,21 @@ class Bibliography
     }
 
 
+//    /**
+//     * @return mixed
+//     */
+//    public function getProposed()
+//    {
+//        return $this->proposed;
+//    }
+//
+//    /**
+//     * @param mixed $proposed
+//     */
+//    public function setProposed($proposed)
+//    {
+//        $this->proposed = $proposed;
+//    }
 
     /**
      * @return mixed

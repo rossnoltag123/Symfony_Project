@@ -21,6 +21,7 @@
         <tbody>
 
     {% for tags in bibliography %}
+
         <tr>
             <td>{{ tags.id }}</td>
             <td>{{ tags.tag }}</td>
@@ -28,7 +29,6 @@
                 <ul>
                     <li><a href="{{ path('showReference', { 'id': tags.id }) }}">show</a></li>
                     <li><a href="{{ path('proposedTags', { 'id': tags.id}) }}">Add To Favorite</a></li>
-
                 </ul>
             </td>
         </tr>

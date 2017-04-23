@@ -3,12 +3,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Bibliography;
+use AppBundle\Entity\ProposedTag;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -24,6 +28,9 @@ class BibliographyController extends Controller
 {
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-----------------------------------------------HomePage---------------------------------------------------------*/
+
+    public static $tagsArray = array();
+
 
     /**
      * @Route("/Bibliography/" , name="homepage")
@@ -163,6 +170,7 @@ class BibliographyController extends Controller
         return new Response('Deleted with id ' . $id);
 
     }
+
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-----------------------Database UPDATE--------------------------*/
 
@@ -200,13 +208,16 @@ class BibliographyController extends Controller
 
         $bibliography = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
 
+
+
         if (!$bibliography) {
             throw $this->createNotFoundException(
                 'No Bibliography found for id' . $id
             );
         }
         $argsArray = [
-            'bibliography' => $bibliography
+            'bibliography' => $bibliography,
+
         ];
         $templateName = 'showReference';
         return $this->render($templateName . '.html.twig', $argsArray);
@@ -235,6 +246,13 @@ class BibliographyController extends Controller
     }
 
     /*----------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
     /*------------------------Tag Action-----------------------------*/
 
     /**
@@ -245,6 +263,11 @@ class BibliographyController extends Controller
         $bibliographyRepository = $this->getDoctrine()->getRepository('AppBundle:Bibliography');
 
         $bibRepo = $bibliographyRepository->findAll();
+        $tagIDs= new ArrayCollection( $bibRepo);
+
+        $tagIDs->add('Hello');
+        dump($tagIDs);
+
 
         $argsArray = [
             'bibliography' => $bibRepo
@@ -266,26 +289,124 @@ class BibliographyController extends Controller
 
         $tagID = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
 
+//        $tagIDs= new ArrayCollection($tagID);
+//
+//        $tagIDs->add('Hello');
+//
+//        dump($tagIDs);
+
         if (!$tagID) {
             throw $this->createNotFoundException(
                 'No Bibliography found for id' . $id
             );
         }
 
+        $argsArray = [
+            'tagID' =>  $tagID
+        ];
 
+
+
+        $templateName = 'proposedTags';
+        return $this->render($templateName . '.html.twig', $argsArray);
+//        $argsArray,array('tagIDs'=>$tagIDs)
 
         return $this->createAction($tagID);
-
-//        $argsArray = [
-//            'tagID' =>  $tagID
-//        ];
-//
-//        $templateName = 'proposedTags';
-//        return $this->render($templateName . '.html.twig', $argsArray);
     }
 
-    /*----------------------------------------------------------------------------------------------------------------*/
+   /*----------------------------------------------------------------------------------------------------------------*/
 
+//    public function tagArrayAction($id)
+//    {
+//
+//        $this->id = $id;
+//        $tagIds = array();
+//        $tagIds[]= $id;
+//
+//
+//        foreach($tagIds as $tagId) {
+//            echo "$tagId";
+//        }
+//
+//        $templateName = 'proposedTags';
+//        return $this->render($templateName . '.html.twig',  $tagIds[]);
+//
+//    }
+
+
+
+
+
+
+
+
+//    /*-------------------------Database ADD--------------------------*/
+//
+//    /**
+//     * @param Bibliography $bibliography
+//     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+//     */
+//    public function createTagAction(ProposedTag $proposedTag)
+//    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//
+//        $entityManager->persist($proposedTag);
+//
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('proposedTags');
+//    }
+
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+//    /*-----------------------Database UPDATE--------------------------*/
+//
+//    /**
+//     * @Route("/Bibliography/tagupdate/{id}/{newProposed}")
+//     */
+//
+//    public function updateTagAction($id, $newProposed)
+//    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//
+//        $bibliography = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
+//
+//        if (!$bibliography) {
+//            throw $this->createNotFoundException(
+//                'No bibliography for id' . $id
+//            );
+//        }
+//
+//        $bibliography->setFavorite($newProposed);
+//        $entityManager->flush();
+//
+//        return $this->redirectToRoute('homepage');
+//    }
+
+
+//    /*-----------------------Database READ-----------------------*/
+//
+//    /**
+//     * @Route("/Bibliography/show/{id}/{tag}" , name="showReference")
+//     */
+//    public function showTagAction($id , $tag)
+//    {
+//        $entityManager = $this->getDoctrine()->getManager();
+//
+//        $bibliography = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
+//
+//        if (!$bibliography) {
+//            throw $this->createNotFoundException(
+//                'No Bibliography found for id' . $id
+//            );
+//        }
+//        $argsArray = [
+//            'bibliography' => $bibliography,
+//            'tag' => $bibliography->getTag(),
+//        ];
+//        $templateName = 'showReference';
+//        return $this->render($templateName . '.html.twig', $argsArray);
+//    }
 }
 
 
@@ -503,5 +624,4 @@ class BibliographyController extends Controller
 //            'notes' => $notes
 //        ];
 //
-//        return new JsonResponse($data);
-//    }
+//        return new JsonResponse($data)
