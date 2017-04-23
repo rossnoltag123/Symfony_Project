@@ -8,8 +8,6 @@
     {#param-converted#}
     </head>
     <body>
-    {% block Logout %}{% endblock %}
-
     {#{% set user = app.session.get('user') %}#}
     {#{% if user is null %}#}
     {#<p>Login: <a href="{{ path('loginSymf') }}">login</a></p>#}
@@ -21,6 +19,19 @@
     {#</header>#}
     {#{% endif %}#}
 
+    {% set lecturer = app.session.get('lecturer') %}
+    {% if lecturer is null %}
+        <p>you are not logged in: <a href="{{ path('login') }}">login</a></p>
+    {% else %}
+        <header>
+            You are logged in  {{ lecturer.username }}<br>
+            <ul><li><a href="{{ path('lecture_index') }}">Lecturers Home page</a></li></ul>
+            <a href="{{ path('logout') }}">logout</a>
+        </header>
+    {% endif %}
+
+    {% block Logout %}{% endblock %}
+
         <div class="flex-container">
          <header>
             <h1>Bibliography Reference System</h1>
@@ -29,6 +40,7 @@
                 <li><a href="{{ path('homepage') }}">Home page</a></li>
                 <li><a href="{{ path('showBibliography') }}">Repository</a></li>
                 <li><a href="{{ path('loginSymf') }}">Student Login</a></li>
+                <li><a href="{{ path('login') }}">Lecturer Login</a></li>
             </ul>
 
         {#--------------------------------------------#}

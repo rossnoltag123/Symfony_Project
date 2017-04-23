@@ -1,0 +1,45 @@
+{% extends '_base.html.twig' %}
+
+{% block body %}
+    <h1>Science</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Reference</th>
+            <th>Tag</th>
+            <th>Textsummary</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sci in science %}
+            <tr>
+                {#<td class ="idTag"><a href="{{ path('studentref2_show', { 'id': studentRef2.id }) }}">{{ studentRef2.id }}</a></td>#}
+                <td>{{ sci.name }}</td>
+                <td>{{ sci.reference }}</td>
+                <td>{{ sci.tag }}</td>
+                <td>{{ sci.textSummary }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            {#<a href="{{ path('studentref2_show', { 'id': studentRef2.id }) }}">show</a>#}
+                        </li>
+                        <li>
+                            {#<a href="{{ path('studentref2_edit', { 'id': studentRef2.id }) }}">edit</a>#}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('refColls') }}">Reference Collections</a>
+    <ul>
+        <li>
+            {#<a href="{{ path('studentref2_new') }}">Create a new Student Reference</a>#}
+        </li>
+    </ul>
+{% endblock %}

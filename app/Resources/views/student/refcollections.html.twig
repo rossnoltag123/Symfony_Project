@@ -1,0 +1,22 @@
+{% extends '_base.html.twig' %}
+
+{% block title %}
+    Student index
+{% endblock %}
+
+    {% block link %}
+
+    {% endblock %}
+{% block Logout %}<li><a href="{{ path('logout') }}">Logout</a></li>{% endblock %}
+{% block body %}
+
+    <h1>Reference Collections</h1>
+
+
+    <a href="{{ path('showMaths') }}">Maths</a>
+    <a href="{{ path('showScience') }}">Science</a>
+    <a href="{{ path('showServerSide') }}">ServerSide</a></li>
+    <a href="{{ path('showWebDev') }}">WebDev</a>
+    <a href="{{ path('showFront') }}">Front End</a>
+
+{% endblock %}

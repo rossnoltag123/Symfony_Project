@@ -13,18 +13,18 @@
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for lec in lecturer %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
+                <td><a href="{{ path('lecturer_show', { 'id': lecturer.id }) }}">{{ lecturer.id }}</a></td>
+                <td>{{ lecturer.username }}</td>
+                <td>{{ lecturer.password }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('lecturer_show', { 'id': lecturer.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('lecturer_edit', { 'id': lecturer.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
+            <a href="{{ path('lecturer_new') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}

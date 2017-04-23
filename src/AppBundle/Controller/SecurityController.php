@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Controller\SpareController;
+namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
+use AppBundle\Entity\Lecturer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,52 +15,61 @@ class SecurityController extends Controller
     /**
      * login form
      *
-     * @Route("/login", name="login")
+     * @Route("/loginlecturer", name="login")
      * @Method({"GET", "POST"})
      */
     public function loginAction(Request $request)
     {
         $session = new Session();
-        $user = new User();
+        $lecturer = new Lecturer();
 
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm('AppBundle\Form\LecturerType', $lecturer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($this->canAuthenticate($user)) {
+            if($this->canAuthenticate($lecturer)) {
 
-                $session->set('user', $user);
+                $session->set('lecturer', $lecturer);
             }else{
                     $this->addFlash(
                     'error',
                     'bad username or password, please try again'
                     );
 
-                    $user->setPassword('');
-                    $form = $this->createForm('AppBundle\Form\UserType', $user);
+                    $lecturer->setPassword('');
+                    $form = $this->createForm('AppBundle\Form\LecturerType', $lecturer);
                 }
         }
 
         $argsArray=[
-            'user' => $user,
+            'lecturer' => $lecturer,
             'form' => $form->createView(),
             ];
 
-        $templateName = 'login';
+        $templateName = 'loginlecturer';
         return $this->render($templateName . '.html.twig', $argsArray);
     }
 
     /**
-     * @param User $user
+     * @param Lecturer $lecturer
      * @return bool
      */
-    public function canAuthenticate(User $user)
+    public function canAuthenticate(Lecturer $lecturer)
     {
-        $username = $user->getUsername();
-        $password = $user->getPassword();
+        $username = $lecturer->getUsername();
+        $password = $lecturer->getPassword();
 
-        return ('admin' == $username) && ('admin' == $password);
+        return ('lecturer' == $username) && ('lecturer' == $password);
     }
 
+    /**
+     * login form
+     *
+     * @Route("/logoutlecturer", name="logout")
+     * @Method({"GET", "POST"})
+     */
+    public function logoutAction(Request $request)
+    {
 
+    }
 }

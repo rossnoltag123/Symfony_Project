@@ -8,25 +8,26 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity
  */
-class User
+class Lecturer
 {
     /**
-     * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     *
+     * @ORM\Column( type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     *
+     * @ORM\Column( type="string")
      */
     private $username;
+
 
     /**
      * @var string

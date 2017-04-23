@@ -5,21 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Front
  *
+ * @ORM\Table(name="front")
  * @ORM\Entity
- * @ORM\Table(name="bibliography")
  */
-class Bibliography
+class Front
 {
     /**
+     *
+     *
+     * @ORM\Column( type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     *
+     *
+     * @ORM\Column( type="string")
      */
     private $name;
 
@@ -40,12 +45,15 @@ class Bibliography
     /**
      * @var string
      *
-     * @ORM\Column(name="text_summary", type="string", length=255)
+     * @ORM\Column(name="textsummary", type="string", length=255)
      */
-    private $textSummary;
+    private $textsummary;
+
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -53,7 +61,23 @@ class Bibliography
     }
 
     /**
-     * @return mixed
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return FrontEnd
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -61,19 +85,11 @@ class Bibliography
     }
 
     /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * Set reference
      *
      * @param string $reference
      *
-     * @return StudentRef2
+     * @return FrontEnd
      */
     public function setReference($reference)
     {
@@ -97,7 +113,7 @@ class Bibliography
      *
      * @param string $tag
      *
-     * @return StudentRef2
+     * @return FrontEnd
      */
     public function setTag($tag)
     {
@@ -117,26 +133,26 @@ class Bibliography
     }
 
     /**
-     * Set textSummary
+     * Set textsummary
      *
-     * @param string $textSummary
+     * @param string $textsummary
      *
-     * @return StudentRef2
+     * @return FrontEnd
      */
-    public function setTextSummary($textSummary)
+    public function setTextsummary($textsummary)
     {
-        $this->textSummary = $textSummary;
+        $this->textsummary = $textsummary;
 
         return $this;
     }
 
     /**
-     * Get textSummary
+     * Get textsummary
      *
      * @return string
      */
-    public function getTextSummary()
+    public function getTextsummary()
     {
-        return $this->textSummary;
+        return $this->textsummary;
     }
 }

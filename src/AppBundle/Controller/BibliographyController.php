@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 
+
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,10 +28,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class BibliographyController extends Controller
 {
+    public static $tagsArray = array();
+
     /*----------------------------------------------------------------------------------------------------------------*/
     /*-----------------------------------------------HomePage---------------------------------------------------------*/
 
-    public static $tagsArray = array();
 
 
     /**
@@ -253,68 +256,41 @@ class BibliographyController extends Controller
 
 
 
-    /*------------------------Tag Action-----------------------------*/
 
-    /**
-     * @Route("/Bibliography/taglist" , name= "taglist")
-     */
-    public function tagAction()
-    {
-        $bibliographyRepository = $this->getDoctrine()->getRepository('AppBundle:Bibliography');
-
-        $bibRepo = $bibliographyRepository->findAll();
-        $tagIDs= new ArrayCollection( $bibRepo);
-
-        $tagIDs->add('Hello');
-        dump($tagIDs);
-
-
-        $argsArray = [
-            'bibliography' => $bibRepo
-        ];
-
-        $templateName = 'tags';
-        return $this->render($templateName . '.html.twig', $argsArray);
-    }
-
-    /*----------------------------------------------------------------------------------------------------------------*/
-    /*-------------------------ProposedTag Add--------------------------*/
-
-    /**
-     * @Route("/Bibliography/proposedTags/{id}" , name="proposedTags")
-     */
-    public function proposedTagAction($id)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $tagID = $entityManager->getRepository('AppBundle:Bibliography')->find($id);
-
-//        $tagIDs= new ArrayCollection($tagID);
+//    /*----------------------------------------------------------------------------------------------------------------*/
+//    /*-----------------------Proposed New Tag--------------------------*/
 //
-//        $tagIDs->add('Hello');
+//    /**
+//     * @Route("/Bibliography/newtaglist/maths" , name= "newtagmathslist")
+//     */
+//    public function newtagMAthsAction()
+//    {
+//        $frontend = $this->getDoctrine()->getRepository('AppBundle:Front');
 //
-//        dump($tagIDs);
-
-        if (!$tagID) {
-            throw $this->createNotFoundException(
-                'No Bibliography found for id' . $id
-            );
-        }
-
-        $argsArray = [
-            'tagID' =>  $tagID
-        ];
+//        $frontRepo =  $frontend->findAll();
+//
+//        $argsArray = [
+//            'frontRepo' => $frontRepo,
+//        ];
+//
+//        $templateName = 'proposedNewTags';
+//        return $this->render($templateName . '.html.twig', $argsArray);
+//    }
 
 
 
-        $templateName = 'proposedTags';
-        return $this->render($templateName . '.html.twig', $argsArray);
-//        $argsArray,array('tagIDs'=>$tagIDs)
 
-        return $this->createAction($tagID);
-    }
 
-   /*----------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
 
 //    public function tagArrayAction($id)
 //    {

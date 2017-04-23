@@ -5,21 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Maths
  *
+ * @ORM\Table(name="webdev")
  * @ORM\Entity
- * @ORM\Table(name="bibliography")
  */
-class Bibliography
+class WebDev
 {
     /**
+     *
+     *
+     * @ORM\Column( type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     *
+     *
+     * @ORM\Column( type="string")
      */
     private $name;
 
@@ -40,12 +45,22 @@ class Bibliography
     /**
      * @var string
      *
-     * @ORM\Column(name="text_summary", type="string", length=255)
+     * @ORM\Column(name="textsummary", type="string", length=255)
      */
-    private $textSummary;
+    private $textsummary;
 
     /**
-     * @return mixed
+     * @var string
+     *
+     * @ORM\Column(name="WebDev", type="string", length=255)
+     */
+    private $webDev;
+
+
+    /**
+     * Get id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -53,7 +68,23 @@ class Bibliography
     }
 
     /**
-     * @return mixed
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Maths
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -61,19 +92,11 @@ class Bibliography
     }
 
     /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * Set reference
      *
      * @param string $reference
      *
-     * @return StudentRef2
+     * @return Maths
      */
     public function setReference($reference)
     {
@@ -97,7 +120,7 @@ class Bibliography
      *
      * @param string $tag
      *
-     * @return StudentRef2
+     * @return Maths
      */
     public function setTag($tag)
     {
@@ -117,26 +140,50 @@ class Bibliography
     }
 
     /**
-     * Set textSummary
+     * Set textsummary
      *
-     * @param string $textSummary
+     * @param string $textsummary
      *
-     * @return StudentRef2
+     * @return Maths
      */
-    public function setTextSummary($textSummary)
+    public function setTextsummary($textsummary)
     {
-        $this->textSummary = $textSummary;
+        $this->textsummary = $textsummary;
 
         return $this;
     }
 
     /**
-     * Get textSummary
+     * Get textsummary
      *
      * @return string
      */
-    public function getTextSummary()
+    public function getTextsummary()
     {
-        return $this->textSummary;
+        return $this->textsummary;
+    }
+
+    /**
+     * Set webDev
+     *
+     * @param string $webDev
+     *
+     * @return Maths
+     */
+    public function setWebDev($webDev)
+    {
+        $this->webDev = $webDev;
+
+        return $this;
+    }
+
+    /**
+     * Get webDev
+     *
+     * @return string
+     */
+    public function getWebDev()
+    {
+        return $this->webDev;
     }
 }

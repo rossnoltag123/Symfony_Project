@@ -1,31 +1,31 @@
 {% extends '_base.html.twig' %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Lecturer</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ user.id }}</td>
+                <td>{{ lecturer.id }}</td>
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{ user.username }}</td>
+                <td>{{ lecturer.username }}</td>
             </tr>
             <tr>
                 <th>Password</th>
-                <td>{{ user.password }}</td>
+                <td>{{ lecturer.password }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
+            <a href="{{ path('lecturer_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
+            <a href="{{ path('lecturer_edit', { 'id': lecturer.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

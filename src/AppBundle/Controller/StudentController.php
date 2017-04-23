@@ -32,21 +32,6 @@ class StudentController extends Controller
     public function studentAction()
     {
 
-//        $session = new Session();
-//
-//        if($session->has ('user')){
-//            $templateName = '/admin/index';
-//            return $this->render($templateName.'.html.twig',[]);
-//        }
-//
-//        $session->getFlashBag()->clear();
-//        $this->addFlash(
-//            'error',
-//            'please login before accessing admin'
-//        );
-//
-//        return $this->redirectToRoute('loginSymf');
-//    }
 
         $templateName = '/student/index';
         return $this->render($templateName . '.html.twig', []);
@@ -80,7 +65,7 @@ class StudentController extends Controller
      */
     public function newAction(Request $request)
     {
-        $studentRef2 = new Studentref2();
+        $studentRef2 = new StudentRef2();
         $form = $this->createForm('AppBundle\Form\StudentRef2Type', $studentRef2);
         $form->handleRequest($request);
 
@@ -101,7 +86,114 @@ class StudentController extends Controller
     /*--------------------------------------------------------------------------------*/
 
     /**
+     *
+     * @Route("/student/referenceCollections", name="refColls")
+     *@Security("has_role('ROLE_USER')")
+     */
+    public function refCollectionsAction()
+    {
+
+
+        $templateName = '/student/refcollections';
+        return $this->render($templateName . '.html.twig', []);
+    }
+    /*--------------------------------------------------------------------------------*/
+
+    /**
+     * @Route("/student/referenceCollections/maths" , name= "showMaths")
+     */
+    public function listmathsAction()
+    {
+
+        $mathsRepository = $this->getDoctrine()->getRepository('AppBundle:Maths');
+
+        $mathsRepo = $mathsRepository->findAll();
+
+        $argsArray = [
+            'maths' => $mathsRepo
+        ];
+
+        $templateName = '/student/showMaths';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /*--------------------------------------------------------------------------------*/
+
+    /**
+     * @Route("/student/referenceCollections/science" , name= "showScience")
+     */
+    public function listscienceAction()
+    {
+
+        $scienceRepository = $this->getDoctrine()->getRepository('AppBundle:Science');
+
+        $scienceRepo = $scienceRepository->findAll();
+
+        $argsArray = [
+            'science' => $scienceRepo
+        ];
+
+        $templateName = '/student/showScience';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * @Route("/student/referenceCollections/serverside" , name= "showServerSide")
+     */
+    public function listServerSideAction()
+    {
+
+        $serverSideRepository = $this->getDoctrine()->getRepository('AppBundle:ServerSide');
+
+        $serverSideRepo = $serverSideRepository->findAll();
+
+        $argsArray = [
+            'serverSide' => $serverSideRepo
+        ];
+
+        $templateName = '/student/showServerSide';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * @Route("/student/referenceCollections/WebDev" , name= "showWebDev")
+     */
+    public function listWebDevAction()
+    {
+
+        $WebDevRepository = $this->getDoctrine()->getRepository('AppBundle:WebDev');
+
+        $WebDevRepo = $WebDevRepository->findAll();
+
+        $argsArray = [
+            'WebDev' => $WebDevRepo
+        ];
+
+        $templateName = '/student/showWebDev';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
+     * @Route("/student/referenceCollections/front" , name= "showFront")
+     */
+    public function listFrontAction()
+    {
+
+        $frontRepository = $this->getDoctrine()->getRepository('AppBundle:Front');
+
+        $frontRepo = $frontRepository->findAll();
+
+        $argsArray = [
+            'front' => $frontRepo
+        ];
+
+        $templateName = '/student/front';
+        return $this->render($templateName . '.html.twig', $argsArray);
+    }
+
+    /**
      * Finds and displays a studentRef2 entity.
+     *
      * @Route("/student/{id}", name="studentref2_show")
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
@@ -181,5 +273,6 @@ class StudentController extends Controller
             ->getForm()
             ;
     }
+
 
 }

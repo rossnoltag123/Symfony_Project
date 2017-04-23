@@ -1,6 +1,10 @@
 {% extends '_base.html.twig' %}
 
+        {% block Logout %}
+        {% endblock %}
+
 {% block body %}
     <h1>You are logged out</h1>
-    <a href="{{ path('logout') }}">Back to the list</a>
+    <a href="{{ path('loginlecturer') }}">Back to the list</a>
 {% endblock %}
+

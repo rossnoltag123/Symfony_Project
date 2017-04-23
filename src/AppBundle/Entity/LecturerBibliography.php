@@ -5,21 +5,26 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * LecturerBibliography
  *
- * @ORM\Entity
- * @ORM\Table(name="bibliography")
+ * @ORM\Table(name="lecturer_bibliography")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LecturerBibliographyRepository")
  */
-class Bibliography
+class LecturerBibliography
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
@@ -40,12 +45,15 @@ class Bibliography
     /**
      * @var string
      *
-     * @ORM\Column(name="text_summary", type="string", length=255)
+     * @ORM\Column(name="textSummary", type="string", length=255)
      */
     private $textSummary;
 
+
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return int
      */
     public function getId()
     {
@@ -53,7 +61,23 @@ class Bibliography
     }
 
     /**
-     * @return mixed
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return LecturerBibliography
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -61,19 +85,11 @@ class Bibliography
     }
 
     /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * Set reference
      *
      * @param string $reference
      *
-     * @return StudentRef2
+     * @return LecturerBibliography
      */
     public function setReference($reference)
     {
@@ -97,7 +113,7 @@ class Bibliography
      *
      * @param string $tag
      *
-     * @return StudentRef2
+     * @return LecturerBibliography
      */
     public function setTag($tag)
     {
@@ -121,7 +137,7 @@ class Bibliography
      *
      * @param string $textSummary
      *
-     * @return StudentRef2
+     * @return LecturerBibliography
      */
     public function setTextSummary($textSummary)
     {
@@ -140,3 +156,4 @@ class Bibliography
         return $this->textSummary;
     }
 }
+
